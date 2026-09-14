@@ -3,7 +3,6 @@
 import { useRef } from "react";
 import { motion, useInView, useReducedMotion, type Variants } from "framer-motion";
 import { ArrowUpRight, Mail } from "lucide-react";
-import StudioLogo from "./StudioLogo";
 import { WHATSAPP_CHAT_URL } from "@/config/whatsapp";
 
 /* ── Animation variants ───────────────────────────────────── */
@@ -168,6 +167,30 @@ function LinkedInIcon() {
   );
 }
 
+/* ── Studio Monogram (same as Header) ─────────────────────── */
+function StudioMonogram({ size = 34 }: { size?: number }) {
+  return (
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 34 34"
+      fill="none"
+      aria-hidden="true"
+      className="shrink-0"
+    >
+      <rect x="0.5" y="0.5" width="33" height="33" rx="3.5" stroke="#B78C4A" strokeOpacity="0.7" />
+      <path
+        d="M7 8L12 26L17 14L22 26L27 8"
+        stroke="#F7F3EC"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        fill="none"
+      />
+      <line x1="7" y1="17" x2="27" y2="17" stroke="#B78C4A" strokeWidth="1.1" strokeLinecap="round" />
+    </svg>
+  );
+}
 
 /* ── CTA Section ─────────────────────────────────────────── */
 function ConsultationCTA({ shouldReduce }: { shouldReduce: boolean | null }) {
@@ -382,7 +405,7 @@ function SiteFooter({ shouldReduce }: { shouldReduce: boolean | null }) {
           >
             {/* Logo */}
             <div className="flex items-center gap-3 mb-5">
-              <StudioLogo size={34} />
+              <StudioMonogram size={34} />
               <span
                 className="text-ivory tracking-[-0.01em]"
                 style={{

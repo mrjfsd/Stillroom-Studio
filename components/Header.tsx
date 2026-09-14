@@ -4,8 +4,51 @@ import { useState, useEffect } from "react";
 import { motion, useReducedMotion } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import MobileMenu from "./MobileMenu";
-import StudioLogo from "./StudioLogo";
 import { NAV_LINKS } from "@/types";
+
+/** Studio monogram — architectural W letterform with brass border and accent */
+function StudioMonogram() {
+  return (
+    <svg
+      width="34"
+      height="34"
+      viewBox="0 0 34 34"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      aria-hidden="true"
+      className="shrink-0"
+    >
+      <rect
+        x="0.5"
+        y="0.5"
+        width="33"
+        height="33"
+        rx="3.5"
+        stroke="#B78C4A"
+        strokeOpacity="0.7"
+      />
+      {/* W letterform for The White Atelier */}
+      <path
+        d="M7 8L12 26L17 14L22 26L27 8"
+        stroke="#F7F3EC"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        fill="none"
+      />
+      {/* Brass horizontal accent at mid-height */}
+      <line
+        x1="7"
+        y1="17"
+        x2="27"
+        y2="17"
+        stroke="#B78C4A"
+        strokeWidth="1.1"
+        strokeLinecap="round"
+      />
+    </svg>
+  );
+}
 
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -88,7 +131,7 @@ export default function Header() {
           className="flex items-center gap-[10px] no-underline shrink-0"
           aria-label="The White Atelier — go to homepage"
         >
-          <StudioLogo size={34} priority />
+          <StudioMonogram />
           <span
             className="text-ivory whitespace-nowrap leading-none font-display font-medium tracking-[0.045em]"
             style={{

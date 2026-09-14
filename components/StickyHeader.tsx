@@ -4,8 +4,49 @@ import { useState, useEffect, useRef } from "react";
 import { motion, useReducedMotion } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import MobileMenu from "./MobileMenu";
-import StudioLogo from "./StudioLogo";
 import { NAV_LINKS } from "@/types";
+
+/** Compact monogram for sticky navigation — architectural W letterform */
+function StudioMonogram() {
+  return (
+    <svg
+      width="28"
+      height="28"
+      viewBox="0 0 34 34"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      aria-hidden="true"
+      className="shrink-0"
+    >
+      <rect
+        x="0.5"
+        y="0.5"
+        width="33"
+        height="33"
+        rx="3.5"
+        stroke="#B78C4A"
+        strokeOpacity="0.7"
+      />
+      <path
+        d="M7 8L12 26L17 14L22 26L27 8"
+        stroke="#F7F3EC"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        fill="none"
+      />
+      <line
+        x1="7"
+        y1="17"
+        x2="27"
+        y2="17"
+        stroke="#B78C4A"
+        strokeWidth="1.1"
+        strokeLinecap="round"
+      />
+    </svg>
+  );
+}
 
 export default function StickyHeader() {
   const [isVisible, setIsVisible] = useState(false);
@@ -199,7 +240,7 @@ export default function StickyHeader() {
             aria-label="The White Atelier — return to top"
             tabIndex={isVisible ? 0 : -1}
           >
-            <StudioLogo size={28} />
+            <StudioMonogram />
             <span
               className="text-ivory whitespace-nowrap leading-none font-display font-medium tracking-[0.045em]"
               style={{
