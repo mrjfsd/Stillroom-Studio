@@ -1,6 +1,5 @@
 import Hero from "@/components/Hero";
 import StickyHeader from "@/components/StickyHeader";
-import LogoStrip from "@/components/LogoStrip";
 import StudioIntro from "@/components/StudioIntro";
 import Services from "@/components/Services";
 import SelectedSpaces from "@/components/SelectedSpaces";
@@ -17,9 +16,6 @@ export default function HomePage() {
       <div className="w-full max-w-full p-[8px_10px_0] sm:p-[12px_14px_0] lg:p-[16px_20px_0] box-border">
         <Hero />
       </div>
-
-      {/* Logo strip — sits directly on ivory background */}
-      <LogoStrip />
 
       {/* Studio introduction — editorial two-column section */}
       <StudioIntro />

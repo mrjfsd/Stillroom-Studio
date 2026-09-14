@@ -13,12 +13,6 @@ export const NAV_LINKS: NavLink[] = [
 ];
 
 
-export interface Publication {
-  name: string;
-  /** Render function for the monochrome SVG icon */
-  icon: React.FC<React.SVGProps<SVGSVGElement>>;
-}
-
 export interface ProjectCardData {
   chip: string;
   title: string;
