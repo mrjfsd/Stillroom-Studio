@@ -4,6 +4,7 @@ import { useEffect } from "react";
 import { AnimatePresence, motion, useReducedMotion, type Variants } from "framer-motion";
 import { X } from "lucide-react";
 import { NAV_LINKS, type NavLink } from "@/types";
+import StudioLogo from "./StudioLogo";
 
 interface MobileMenuProps {
   isOpen: boolean;
@@ -11,47 +12,6 @@ interface MobileMenuProps {
   activeId?: string;
   navLinks?: NavLink[];
   id?: string;
-}
-
-function StudioMonogram() {
-  return (
-    <svg
-      width="30"
-      height="30"
-      viewBox="0 0 34 34"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-      aria-hidden="true"
-      className="shrink-0"
-    >
-      <rect
-        x="0.5"
-        y="0.5"
-        width="33"
-        height="33"
-        rx="3.5"
-        stroke="#B78C4A"
-        strokeOpacity="0.7"
-      />
-      <path
-        d="M7 8L12 26L17 14L22 26L27 8"
-        stroke="#F7F3EC"
-        strokeWidth="1.5"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        fill="none"
-      />
-      <line
-        x1="7"
-        y1="17"
-        x2="27"
-        y2="17"
-        stroke="#B78C4A"
-        strokeWidth="1.1"
-        strokeLinecap="round"
-      />
-    </svg>
-  );
 }
 
 const menuVariants: Variants = {
@@ -158,7 +118,7 @@ export default function MobileMenu({
             {/* Top bar with Monogram / Logo and Close Button */}
             <div className="flex items-center justify-between pb-8 pt-2 border-b border-white/[0.08] mb-6">
               <div className="flex items-center gap-[10px]">
-                <StudioMonogram />
+                <StudioLogo size={30} />
                 <span
                   className="text-ivory whitespace-nowrap leading-none font-display font-medium tracking-[0.045em]"
                   style={{
