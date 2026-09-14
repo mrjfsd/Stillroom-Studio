@@ -69,9 +69,9 @@ const services: ServiceCard[] = [
   {
     variant: "image",
     number: "03",
-    imageSrc: "/images/marwan_hospitality_interior.jpg",
+    imageSrc: "/images/hospitality.jpg",
     imageAlt:
-      "The White Atelier hospitality project: an intimate boutique lounge with deep green velvet curved banquette, brass wall sconces, walnut panelled ceiling, and warm amber lighting.",
+      "The White Atelier commercial project: an elegant hospitality interior featuring fluted timber wall panelling, arched brass mirrors, contemporary credenzas, and marble flooring.",
     titleLines: ["Hospitality &", "Commercial"],
     description:
       "Atmospheric spaces that turn a brand story into a memorable experience.",

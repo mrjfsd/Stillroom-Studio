@@ -7,7 +7,7 @@ import { ArrowUpRight } from "lucide-react";
 
 /* ── Animation variants ───────────────────────────────────── */
 const fadeUp: Variants = {
-  hidden: { opacity: 0, y: 28 },
+  hidden: { opacity: 0, y: 24 },
   visible: { opacity: 1, y: 0, transition: { duration: 0.65, ease: "easeOut" } },
 };
 
@@ -21,19 +21,32 @@ const imageVariant: Variants = {
   visible: { opacity: 1, y: 0, transition: { duration: 0.75, ease: "easeOut" } },
 };
 
-/* ── Principles list ─────────────────────────────────────── */
-const principles = [
-  "Material Honesty",
-  "Light & Flow",
-  "Lasting Craft",
-  "Personal Detail",
-];
-
-/* ── Stats ───────────────────────────────────────────────── */
-const stats = [
-  { value: "40+", label: "Completed spaces" },
-  { value: "12",  label: "Years of practice" },
-  { value: "8",   label: "Design awards" },
+/* ── Process Stages Data ──────────────────────────────────── */
+const processStages = [
+  {
+    number: "01",
+    title: "DISCOVER",
+    description:
+      "We listen, understand your lifestyle, and uncover what you want your space to feel like.",
+  },
+  {
+    number: "02",
+    title: "CONCEPT",
+    description:
+      "We translate your ideas into a clear design direction through materials, colours, layouts and mood.",
+  },
+  {
+    number: "03",
+    title: "REFINE",
+    description:
+      "Every detail is thoughtfully considered, adjusted and brought together into one cohesive vision.",
+  },
+  {
+    number: "04",
+    title: "CREATE",
+    description:
+      "The final design comes to life as a space that feels personal, functional and distinctly yours.",
+  },
 ];
 
 export default function StudioIntro() {
@@ -43,138 +56,64 @@ export default function StudioIntro() {
 
   const visible = shouldReduce || inView;
 
+  const handleScrollToContact = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault();
+    const el = document.getElementById("contact");
+    if (el) {
+      el.scrollIntoView({
+        behavior: shouldReduce ? "auto" : "smooth",
+        block: "start",
+      });
+      window.history.pushState(null, "", "#contact");
+    } else {
+      window.location.hash = "contact";
+    }
+  };
+
   return (
     <section
       id="studio"
       ref={ref}
       className="scroll-mt-20 section-pad-x w-full max-w-full box-border"
-      aria-label="Our approach — studio introduction"
+      aria-label="From Your Idea to Your Space — The Process"
       style={{
-        paddingTop: "clamp(72px, 10vw, 140px)",
-        paddingBottom: "clamp(72px, 10vw, 140px)",
+        paddingTop: "clamp(72px, 9vw, 130px)",
+        paddingBottom: "clamp(72px, 9vw, 130px)",
       }}
     >
-      <div
-        className="mx-auto w-full max-w-[1340px] min-w-0"
-      >
+      <div className="mx-auto w-full max-w-[1340px] min-w-0">
         {/* ── Two-column grid ── */}
         <motion.div
-          className="flex flex-col lg:flex-row items-start gap-[clamp(40px,5vw,80px)] w-full min-w-0"
+          className="flex flex-col lg:flex-row items-center lg:items-start gap-[clamp(40px,4.5vw,72px)] w-full min-w-0"
           variants={stagger}
           initial="hidden"
           animate={visible ? "visible" : "hidden"}
         >
-          {/* ── LEFT: Image card ── */}
+          {/* ── LEFT: Clean approach.png image only ── */}
           <motion.div
-            className="w-full lg:w-[42%] shrink-0 min-w-0 mx-auto"
+            className="w-full lg:w-[44%] xl:w-[42%] shrink-0 min-w-0 flex items-center justify-center mx-auto"
             variants={imageVariant}
           >
-            {/* Image wrapper — portrait card with overlay text */}
-            <motion.div
-              className="relative overflow-hidden rounded-[28px] lg:rounded-[30px] w-full max-w-full mx-auto"
-              style={{
-                /* ~3:4 portrait ratio via padding-top shim */
-                paddingTop: "125%",
-                boxShadow:
-                  "0 32px 80px rgba(13,42,33,0.22), 0 4px 16px rgba(0,0,0,0.1)",
-              }}
-              whileHover={shouldReduce ? {} : { scale: 1.015 }}
-              transition={{ duration: 0.75, ease: "easeOut" }}
-            >
-              {/* Photography */}
-              <Image
-                src="/images/marwan_studio_intro_dining.jpg"
-                alt="Completed The White Atelier dining room featuring travertine table, curved cream linen chairs, warm oak joinery and a sculptural dried-branch chandelier with brass hardware."
-                fill
-                sizes="(max-width: 1023px) 100vw, 42vw"
-                className="object-cover"
-                style={{ objectPosition: "center 20%" }}
-              />
-
-              {/* Deep gradient overlay — begins at lower third */}
-              <div
-                aria-hidden="true"
-                className="absolute inset-0 pointer-events-none"
-                style={{
-                  background:
-                    "linear-gradient(to top, rgba(13,42,33,0.92) 0%, rgba(13,42,33,0.6) 32%, transparent 62%)",
-                }}
-              />
-
-              {/* Overlay content */}
-              <div
-                className="absolute bottom-0 left-0 right-0 z-10"
-                style={{ padding: "clamp(22px, 3vw, 38px)" }}
-              >
-                {/* Eyebrow */}
-                <p
-                  className="uppercase tracking-[0.2em] mb-3 flex items-center gap-3"
-                  style={{
-                    fontFamily: "var(--font-dm-sans, system-ui, sans-serif)",
-                    fontSize: "9.5px",
-                    fontWeight: 500,
-                    color: "rgba(183,140,74,0.9)",
-                  }}
-                >
-                  <span
-                    aria-hidden="true"
-                    className="block h-[1px] bg-brass shrink-0"
-                    style={{ width: "22px" }}
-                  />
-                  The White Atelier Principles
-                </p>
-
-                {/* Title */}
-                <h2
-                  className="text-ivory leading-[1.06] tracking-[-0.01em] mb-5"
-                  style={{
-                    fontFamily: "var(--font-cormorant, Georgia, serif)",
-                    fontSize: "clamp(26px, 3.2vw, 44px)",
-                    fontWeight: 600,
-                  }}
-                >
-                  Designed for Living
-                </h2>
-
-                {/* Principles grid */}
-                <ul
-                  className="flex flex-wrap gap-x-5 gap-y-2"
-                  role="list"
-                  aria-label="Design principles"
-                >
-                  {principles.map((p) => (
-                    <li
-                      key={p}
-                      className="flex items-center gap-[7px] text-text-lt"
-                      style={{
-                        fontFamily: "var(--font-dm-sans, system-ui, sans-serif)",
-                        fontSize: "11.5px",
-                        fontWeight: 400,
-                        color: "rgba(235,229,220,0.80)",
-                      }}
-                    >
-                      {/* Brass dot */}
-                      <span
-                        aria-hidden="true"
-                        className="w-[4px] h-[4px] rounded-full bg-brass shrink-0"
-                      />
-                      {p}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </motion.div>
+            <Image
+              src="/images/approach.png"
+              alt="The White Atelier design process materials, colour palette swatches, drafting compass, and craftsman brush"
+              width={1371}
+              height={1148}
+              className="w-full h-auto max-w-[540px] lg:max-w-full object-contain select-none"
+              sizes="(max-width: 1023px) 90vw, 44vw"
+              priority={false}
+            />
           </motion.div>
 
-          {/* ── RIGHT: Editorial copy ── */}
+          {/* ── RIGHT: Process content & timeline ── */}
           <motion.div
             className="w-full lg:flex-1 flex flex-col justify-center min-w-0"
             variants={stagger}
-            style={{ paddingTop: "clamp(0px, 4vw, 64px)" }}
+            style={{ paddingTop: "clamp(0px, 2.5vw, 36px)" }}
           >
             {/* Eyebrow */}
             <motion.p
-              className="flex items-center gap-3 uppercase tracking-[0.22em] text-sage mb-6"
+              className="flex items-center gap-3 uppercase tracking-[0.22em] text-sage mb-5"
               style={{
                 fontFamily: "var(--font-dm-sans, system-ui, sans-serif)",
                 fontSize: "10px",
@@ -187,151 +126,225 @@ export default function StudioIntro() {
                 className="block h-[1px] bg-brass shrink-0"
                 style={{ width: "26px" }}
               />
-              Our Approach
+              THE PROCESS
             </motion.p>
 
-            {/* Heading */}
+            {/* Main heading */}
             <motion.h2
-              className="text-charcoal leading-[1.07] tracking-[-0.02em] mb-7"
+              className="text-charcoal leading-[1.08] tracking-[-0.02em] mb-6"
               style={{
                 fontFamily: "var(--font-cormorant, Georgia, serif)",
-                fontSize: "clamp(38px, 4.6vw, 68px)",
+                fontSize: "clamp(34px, 4vw, 58px)",
                 fontWeight: 600,
               }}
               variants={fadeUp}
             >
-              Interiors with a{" "}
+              Your vision.
+              <br />
               <span className="accent-word">
                 <span className="bg-block" aria-hidden="true" />
-                sense of place,
+                Thoughtfully brought to life.
               </span>
-              <br />
-              made for the way you live.
             </motion.h2>
 
-            {/* Body copy */}
+            {/* Supporting copy */}
             <motion.p
-              className="leading-[1.82] font-light mb-10"
+              className="leading-[1.8] font-light mb-9 text-charcoal/70"
               style={{
                 fontFamily: "var(--font-dm-sans, system-ui, sans-serif)",
-                fontSize: "clamp(14px, 1.15vw, 16.5px)",
-                color: "rgba(20,35,30,0.60)",
-                maxWidth: "480px",
+                fontSize: "clamp(14px, 1.08vw, 16px)",
+                maxWidth: "560px",
               }}
               variants={fadeUp}
             >
-              We shape residential and hospitality interiors around natural
-              materials, considered proportions, and the rituals that make a
-              space truly personal. Every decision is made to feel effortless
-              long after the project is complete.
+              We listen, understand your lifestyle, and uncover what you want your
+              space to feel like. From the first idea to the final detail, every
+              decision is thoughtfully shaped around you and the way you live.
             </motion.p>
 
-            {/* Stats row */}
+            {/* ── Process timeline ── */}
+
+            {/* 1. Desktop Horizontal Timeline (>= lg) */}
             <motion.div
-              className="flex items-stretch mb-10"
-              style={{ maxWidth: "440px" }}
+              className="hidden lg:block w-full mb-9"
               variants={fadeUp}
             >
-              {stats.map((s, i) => (
-                <div key={s.value} className="flex items-stretch">
-                  {/* Stat block */}
-                  <div className="flex flex-col gap-[5px] px-0">
+              <div className="grid grid-cols-4 gap-4 xl:gap-6 w-full">
+                {processStages.map((stage, i) => (
+                  <div key={stage.number} className="flex flex-col min-w-0">
+                    {/* Header: Number & Title */}
                     <span
-                      className="text-charcoal leading-none tracking-[-0.03em]"
-                      style={{
-                        fontFamily: "var(--font-cormorant, Georgia, serif)",
-                        fontSize: "clamp(34px, 3.8vw, 52px)",
-                        fontWeight: 600,
-                      }}
-                    >
-                      {s.value}
-                    </span>
-                    <span
-                      className="uppercase tracking-[0.14em]"
+                      className="text-brass tracking-[0.18em] font-semibold text-[11px] mb-1 block"
                       style={{
                         fontFamily: "var(--font-dm-sans, system-ui, sans-serif)",
-                        fontSize: "9.5px",
-                        fontWeight: 500,
-                        color: "rgba(20,35,30,0.42)",
                       }}
                     >
-                      {s.label}
+                      {stage.number}
                     </span>
-                  </div>
-
-                  {/* Divider — not after last item */}
-                  {i < stats.length - 1 && (
-                    <div
-                      aria-hidden="true"
-                      className="mx-[clamp(16px,2.2vw,30px)] self-stretch"
+                    <h3
+                      className="text-charcoal tracking-[0.14em] font-medium text-[12px] xl:text-[13px] mb-3 uppercase"
                       style={{
-                        width: "1px",
-                        background:
-                          "linear-gradient(to bottom, transparent 0%, #DDD3C4 30%, #DDD3C4 70%, transparent 100%)",
+                        fontFamily: "var(--font-dm-sans, system-ui, sans-serif)",
                       }}
-                    />
-                  )}
-                </div>
-              ))}
+                    >
+                      {stage.title}
+                    </h3>
+
+                    {/* Horizontal wire & node */}
+                    <div className="relative flex items-center mb-3.5 w-full h-[12px]">
+                      {/* Connecting line to adjacent stages */}
+                      <div
+                        aria-hidden="true"
+                        className={`absolute h-[1px] bg-[#B78C4A]/40 ${
+                          i === 0
+                            ? "left-2 -right-4 xl:-right-6"
+                            : i === processStages.length - 1
+                            ? "-left-4 xl:-left-6 right-auto w-4 xl:w-6"
+                            : "-left-4 xl:-left-6 -right-4 xl:-right-6"
+                        }`}
+                      />
+                      {/* Node dot with ivory border ring */}
+                      <div
+                        aria-hidden="true"
+                        className="relative z-10 w-[7px] h-[7px] rounded-full bg-brass ring-4 ring-[#F7F3EC] shrink-0"
+                      />
+                    </div>
+
+                    {/* Short description */}
+                    <p
+                      className="leading-[1.62] font-light text-charcoal/65 text-[12px] xl:text-[13px]"
+                      style={{
+                        fontFamily: "var(--font-dm-sans, system-ui, sans-serif)",
+                      }}
+                    >
+                      {stage.description}
+                    </p>
+                  </div>
+                ))}
+              </div>
             </motion.div>
 
-            {/* CTA row */}
+            {/* 2. Mobile & Tablet Vertical Timeline (< lg) */}
+            <motion.div
+              className="block lg:hidden w-full mb-9"
+              variants={fadeUp}
+            >
+              <div className="relative pl-6 space-y-6">
+                {/* Vertical connecting wire */}
+                <div
+                  aria-hidden="true"
+                  className="absolute left-[3px] top-2 bottom-3 w-[1px] bg-[#B78C4A]/35"
+                />
+
+                {processStages.map((stage) => (
+                  <div key={stage.number} className="relative">
+                    {/* Node dot on the wire */}
+                    <div
+                      aria-hidden="true"
+                      className="absolute -left-[24px] top-1.5 w-[7px] h-[7px] rounded-full bg-brass ring-4 ring-[#F7F3EC]"
+                    />
+
+                    {/* Stage header */}
+                    <div className="flex items-baseline gap-2 mb-1.5">
+                      <span
+                        className="text-brass tracking-[0.16em] font-semibold text-[11px]"
+                        style={{
+                          fontFamily: "var(--font-dm-sans, system-ui, sans-serif)",
+                        }}
+                      >
+                        {stage.number}
+                      </span>
+                      <span className="text-brass/60 text-[11px]" aria-hidden="true">
+                        —
+                      </span>
+                      <h3
+                        className="text-charcoal tracking-[0.14em] font-medium text-[13px] uppercase"
+                        style={{
+                          fontFamily: "var(--font-dm-sans, system-ui, sans-serif)",
+                        }}
+                      >
+                        {stage.title}
+                      </h3>
+                    </div>
+
+                    {/* Description */}
+                    <p
+                      className="leading-[1.65] font-light text-charcoal/70 text-[13.5px] max-w-[480px]"
+                      style={{
+                        fontFamily: "var(--font-dm-sans, system-ui, sans-serif)",
+                      }}
+                    >
+                      {stage.description}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            </motion.div>
+
+            {/* ── CTA row with smooth navigation to contact ── */}
             <motion.div
               className="flex items-center gap-4"
               variants={fadeUp}
             >
               {/* Primary pill button */}
               <motion.a
-                href="/studio"
-                id="meet-studio-btn"
-                aria-label="Meet The White Atelier studio"
-                className="inline-block text-charcoal bg-ivory rounded-full whitespace-nowrap no-underline font-medium tracking-[0.05em] cursor-pointer border border-[rgba(20,35,30,0.14)]"
+                href="#contact"
+                onClick={handleScrollToContact}
+                id="process-talk-space-btn"
+                aria-label="Let's talk about your space — scroll to contact section"
+                className="inline-block text-ivory rounded-full whitespace-nowrap no-underline font-medium tracking-[0.05em] cursor-pointer"
                 style={{
                   fontFamily: "var(--font-dm-sans, system-ui, sans-serif)",
                   fontSize: "13px",
-                  padding: "14px 28px",
-                  boxShadow: "0 2px 12px rgba(0,0,0,0.06)",
+                  padding: "15px 32px",
                   backgroundColor: "#14231E",
                   color: "#F7F3EC",
+                  boxShadow: "0 4px 20px rgba(20,35,30,0.18)",
                 }}
                 whileHover={
                   shouldReduce
                     ? {}
                     : {
-                        y: -3,
+                        y: -2.5,
                         backgroundColor: "#0D2A21",
-                        boxShadow: "0 12px 32px rgba(13,42,33,0.28)",
+                        boxShadow: "0 12px 32px rgba(13,42,33,0.26)",
                       }
                 }
-                transition={{ duration: 0.25 }}
+                transition={{ duration: 0.25, ease: "easeOut" }}
               >
-                Meet the Studio
+                Let&apos;s Talk About Your Space
               </motion.a>
 
               {/* Circle arrow button */}
               <motion.a
-                href="/studio"
-                aria-label="Learn more about The White Atelier"
-                className="flex items-center justify-center shrink-0 rounded-full border border-[rgba(20,35,30,0.18)] bg-transparent text-charcoal cursor-pointer no-underline"
-                style={{ width: "50px", height: "50px" }}
+                href="#contact"
+                onClick={handleScrollToContact}
+                aria-label="Let's talk about your space — scroll to contact section"
+                className="flex items-center justify-center shrink-0 rounded-full border text-charcoal cursor-pointer no-underline"
+                style={{
+                  width: "52px",
+                  height: "52px",
+                  borderColor: "rgba(20,35,30,0.20)",
+                  backgroundColor: "transparent",
+                }}
                 whileHover={
                   shouldReduce
                     ? {}
                     : {
-                        y: -3,
-                        x: 2,
+                        y: -2.5,
+                        x: 2.5,
                         borderColor: "#B78C4A",
                         backgroundColor: "rgba(183,140,74,0.10)",
                       }
                 }
-                transition={{ duration: 0.28 }}
+                transition={{ duration: 0.25, ease: "easeOut" }}
               >
                 <motion.span
                   whileHover={shouldReduce ? {} : { rotate: -18, scale: 1.12 }}
                   transition={{ duration: 0.25 }}
-                  className="flex items-center justify-center"
+                  className="flex items-center justify-center pointer-events-none"
                 >
-                  <ArrowUpRight size={17} strokeWidth={1.4} />
+                  <ArrowUpRight size={18} strokeWidth={1.4} />
                 </motion.span>
               </motion.a>
             </motion.div>
