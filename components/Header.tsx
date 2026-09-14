@@ -6,8 +6,8 @@ import { Menu, X } from "lucide-react";
 import MobileMenu from "./MobileMenu";
 import { NAV_LINKS } from "@/types";
 
-/** M monogram — same brass border, ivory letterform, brass crossbar */
-function MMonogram() {
+/** Studio monogram — architectural W letterform with brass border and accent */
+function StudioMonogram() {
   return (
     <svg
       width="34"
@@ -27,9 +27,9 @@ function MMonogram() {
         stroke="#B78C4A"
         strokeOpacity="0.7"
       />
-      {/* M letterform — two outer verticals + two inner diagonals meeting at apex */}
+      {/* W letterform for The White Atelier */}
       <path
-        d="M7 27V7L17 19L27 7V27"
+        d="M7 8L12 26L17 14L22 26L27 8"
         stroke="#F7F3EC"
         strokeWidth="1.5"
         strokeLinecap="round"
@@ -39,9 +39,9 @@ function MMonogram() {
       {/* Brass horizontal accent at mid-height */}
       <line
         x1="7"
-        y1="18"
+        y1="17"
         x2="27"
-        y2="18"
+        y2="17"
         stroke="#B78C4A"
         strokeWidth="1.1"
         strokeLinecap="round"
@@ -129,9 +129,9 @@ export default function Header() {
           href="#home"
           onClick={(e) => handleNavClick(e, "#home")}
           className="flex items-center gap-[10px] no-underline shrink-0"
-          aria-label="Marwan Design — go to homepage"
+          aria-label="The White Atelier — go to homepage"
         >
-          <MMonogram />
+          <StudioMonogram />
           <span
             className="text-ivory whitespace-nowrap leading-none font-display font-medium tracking-[0.045em]"
             style={{
@@ -139,7 +139,7 @@ export default function Header() {
               fontSize: "clamp(15px, 1.3vw, 19px)",
             }}
           >
-            Marwan Design
+            The White Atelier
           </span>
         </a>
 

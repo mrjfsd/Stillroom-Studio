@@ -13,7 +13,7 @@ interface MobileMenuProps {
   id?: string;
 }
 
-function MMonogram() {
+function StudioMonogram() {
   return (
     <svg
       width="30"
@@ -34,7 +34,7 @@ function MMonogram() {
         strokeOpacity="0.7"
       />
       <path
-        d="M7 27V7L17 19L27 7V27"
+        d="M7 8L12 26L17 14L22 26L27 8"
         stroke="#F7F3EC"
         strokeWidth="1.5"
         strokeLinecap="round"
@@ -43,9 +43,9 @@ function MMonogram() {
       />
       <line
         x1="7"
-        y1="18"
+        y1="17"
         x2="27"
-        y2="18"
+        y2="17"
         stroke="#B78C4A"
         strokeWidth="1.1"
         strokeLinecap="round"
@@ -158,7 +158,7 @@ export default function MobileMenu({
             {/* Top bar with Monogram / Logo and Close Button */}
             <div className="flex items-center justify-between pb-8 pt-2 border-b border-white/[0.08] mb-6">
               <div className="flex items-center gap-[10px]">
-                <MMonogram />
+                <StudioMonogram />
                 <span
                   className="text-ivory whitespace-nowrap leading-none font-display font-medium tracking-[0.045em]"
                   style={{
@@ -166,7 +166,7 @@ export default function MobileMenu({
                     fontSize: "clamp(16px, 1.4vw, 20px)",
                   }}
                 >
-                  Marwan Design
+                  The White Atelier
                 </span>
               </div>
 

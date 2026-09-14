@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { motion, useReducedMotion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 import Header from "./Header";
@@ -9,10 +10,10 @@ import ProjectCard from "./ProjectCard";
 import type { ProjectCardData } from "@/types";
 
 const projectData: ProjectCardData = {
-  chip: "Featured Project",
-  title: "The Oak Residence",
-  sub: "Residential \u00a0·\u00a0 Bengaluru",
-  year: "Completed 2026",
+  chip: "Featured Space",
+  title: "HSR Layout Residence",
+  sub: "Residential \u00a0·\u00a0 HSR Layout, Bengaluru",
+  year: "Interior Showcase",
 };
 
 /** Brass drafting marks — kept as SVG for editorial precision */
@@ -39,6 +40,20 @@ function DraftingMarks() {
 export default function Hero() {
   const shouldReduce = useReducedMotion();
 
+  const handleScrollToClientStories = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault();
+    const el = document.getElementById("client-stories");
+    if (el) {
+      el.scrollIntoView({
+        behavior: shouldReduce ? "auto" : "smooth",
+        block: "start",
+      });
+      window.history.pushState(null, "", "#client-stories");
+    } else {
+      window.location.hash = "client-stories";
+    }
+  };
+
   return (
     <section
       id="home"
@@ -47,7 +62,7 @@ export default function Hero() {
         boxShadow:
           "0 18px 48px rgba(10,18,14,0.22), 0 2px 10px rgba(0,0,0,0.10), inset 0 1px 0 rgba(255,255,255,0.04)",
       }}
-      aria-label="Hero — Marwan Design"
+      aria-label="Hero — The White Atelier"
     >
       {/* Left forest glow */}
       <div
@@ -123,7 +138,7 @@ export default function Hero() {
               maxWidth: "400px",
             }}
           >
-            Marwan Design creates thoughtful interiors that balance timeless
+            The White Atelier creates thoughtful interiors that balance timeless
             materials, personal stories, and everyday ease.
           </p>
 
@@ -131,8 +146,9 @@ export default function Hero() {
           <div className="flex items-center gap-[14px]">
             {/* Primary button */}
             <motion.a
-              href="#"
+              href="#client-stories"
               id="explore-btn"
+              onClick={handleScrollToClientStories}
               className="inline-block text-charcoal bg-ivory rounded-full whitespace-nowrap no-underline font-medium tracking-[0.05em] cursor-pointer"
               style={{
                 fontFamily: "var(--font-dm-sans, system-ui, sans-serif)",
@@ -155,7 +171,8 @@ export default function Hero() {
 
             {/* Circle arrow button */}
             <motion.a
-              href="#"
+              href="#client-stories"
+              onClick={handleScrollToClientStories}
               aria-label="View our portfolio"
               className="flex items-center justify-center shrink-0 rounded-full border border-[rgba(231,226,217,0.22)] bg-transparent text-ivory cursor-pointer no-underline"
               style={{ width: "50px", height: "50px" }}
@@ -174,7 +191,7 @@ export default function Hero() {
               <motion.span
                 whileHover={shouldReduce ? {} : { rotate: -18, scale: 1.12 }}
                 transition={{ duration: 0.25 }}
-                className="flex items-center justify-center"
+                className="flex items-center justify-center pointer-events-none"
               >
                 <ArrowUpRight size={17} strokeWidth={1.4} />
               </motion.span>
@@ -214,14 +231,14 @@ export default function Hero() {
             />
 
             <Image
-              src="/images/atelier_haven_interior.jpg"
-              alt="The Oak Residence — warm contemporary living room with natural oak paneling, travertine coffee table, linen sectional sofa, sculptural brass pendant lighting, and floor-to-ceiling windows overlooking lush greenery. Designed by Marwan Design."
+              src="/images/mainhome.png"
+              alt="HSR Layout Residence — contemporary living room with warm wood ceiling, television feature wall, pendant lighting, comfortable sofa, and balcony doors opening to greenery. The White Atelier, Bengaluru."
               fill
               priority
               sizes="(max-width: 860px) 100vw, 95vw"
               className="object-cover"
               style={{
-                objectPosition: "center 25%",
+                objectPosition: "center 35%",
               }}
             />
 

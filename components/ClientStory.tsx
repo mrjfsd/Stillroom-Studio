@@ -118,7 +118,7 @@ function QuoteCard({ visible }: { visible: boolean }) {
             color: "rgba(20,35,30,0.82)",
           }}
         >
-          &ldquo;Marwan Design understood how we wanted our home to feel before
+          &ldquo;The White Atelier understood how we wanted our home to feel before
           we had the words for it. Every room is beautiful, but more
           importantly, it feels like us.&rdquo;
         </p>
@@ -144,7 +144,7 @@ function QuoteCard({ visible }: { visible: boolean }) {
               color: "#14231E",
             }}
           >
-            Ananya &amp; Rohan Mehta
+            Ramya
           </p>
           <p
             className="uppercase tracking-[0.13em]"
@@ -155,7 +155,7 @@ function QuoteCard({ visible }: { visible: boolean }) {
               color: "rgba(20,35,30,0.42)",
             }}
           >
-            The Linden House, Bengaluru
+            HSR Layout &middot; Aratt Royal Manor
           </p>
         </div>
       </div>
@@ -190,7 +190,7 @@ export default function ClientStory() {
   return (
     <section
       ref={ref}
-      id="contact-stories"
+      id="client-stories"
       aria-label="Client stories — testimonials"
       className="scroll-mt-20 section-pad-x w-full max-w-full box-border"
       style={{
@@ -199,6 +199,8 @@ export default function ClientStory() {
         backgroundColor: "#F7F3EC",
       }}
     >
+      {/* Backward-compatibility anchor for legacy contact-stories id */}
+      <div id="contact-stories" aria-hidden="true" className="sr-only" />
       <div className="mx-auto w-full max-w-[1340px] min-w-0">
 
         {/* ══════════════════════════════════════════════════════
@@ -383,18 +385,19 @@ export default function ClientStory() {
 
         {/* ══════════════════════════════════════════════════════
             DESKTOP / TABLET layout  (md+)
-            Left: editorial copy + nav controls
-            Right: 3-column masonry gallery → quote card below
+            Three columns:
+              [editorial copy + nav] | [quote card] | [portrait gallery]
+            Quote card is vertically centered against the gallery column.
         ══════════════════════════════════════════════════════ */}
-        <div className="hidden md:flex flex-row items-start gap-[clamp(40px,5vw,72px)] w-full min-w-0">
+        <div className="hidden md:flex flex-row items-stretch gap-[clamp(28px,3.5vw,56px)] w-full min-w-0">
 
-          {/* Left: editorial copy */}
+          {/* ── Col 1: editorial copy + navigation ── */}
           <motion.div
-            className="w-[36%] shrink-0 flex flex-col justify-center min-w-0"
+            className="w-[24%] shrink-0 flex flex-col justify-center min-w-0"
             variants={staggerLeft}
             initial="hidden"
             animate={visible ? "visible" : "hidden"}
-            style={{ paddingTop: "clamp(0px,3vw,48px)" }}
+            style={{ paddingTop: "clamp(0px,2vw,32px)" }}
           >
             <motion.p
               className="flex items-center gap-3 uppercase tracking-[0.22em] text-sage mb-6"
@@ -409,7 +412,7 @@ export default function ClientStory() {
               className="text-charcoal leading-[1.08] tracking-[-0.02em] mb-7"
               style={{
                 fontFamily: "var(--font-cormorant, Georgia, serif)",
-                fontSize: "clamp(36px, 4.2vw, 62px)",
+                fontSize: "clamp(30px, 3.2vw, 54px)",
                 fontWeight: 600,
               }}
               variants={fadeUp}
@@ -428,9 +431,8 @@ export default function ClientStory() {
               className="leading-[1.82] mb-10"
               style={{
                 fontFamily: "var(--font-dm-sans, system-ui, sans-serif)",
-                fontSize: "clamp(13.5px, 1.1vw, 16px)",
+                fontSize: "clamp(12.5px, 0.95vw, 15px)",
                 color: "rgba(20,35,30,0.56)",
-                maxWidth: "400px",
               }}
               variants={fadeUp}
             >
@@ -463,141 +465,150 @@ export default function ClientStory() {
             </motion.div>
           </motion.div>
 
-          {/* Right: gallery + quote card */}
-          <div className="flex-1 min-w-0 flex flex-col gap-8">
+          {/* ── Col 2: quote card — vertically centered ── */}
+          <div className="w-[clamp(220px,22%,320px)] shrink-0 flex items-center min-w-0">
+            <div className="w-full">
+              <QuoteCard visible={visible} />
+            </div>
+          </div>
 
-            {/* 3-column asymmetric masonry */}
-            <div className="grid grid-cols-3 items-start gap-4 w-full min-w-0">
+          {/* ── Col 3: portrait gallery (flex-1) ── */}
+          <div className="flex-1 min-w-0 flex flex-col min-w-0" style={{ gap: "16px" }}>
 
-              {/* Column 1: in1 — tall dominant tile */}
-              <motion.div
-                className="col-span-1 w-full min-w-0"
-                style={{ height: "clamp(480px, 50vw, 720px)" }}
-                custom={1}
-                variants={galleryItemFade}
-                initial="hidden"
-                animate={visible ? "visible" : "hidden"}
-              >
-                <div
-                  className="group relative w-full h-full overflow-hidden rounded-[20px]"
-                  style={{ backgroundColor: "#EAE4D9", boxShadow: "0 16px 44px rgba(20,35,30,0.08), 0 2px 8px rgba(0,0,0,0.04)" }}
-                >
-                  <Image
-                    src="/images/in1.png"
-                    alt="Custom floor-to-ceiling wardrobe joinery around window alcove at The Linden House"
-                    fill
-                    sizes="(max-width: 1023px) 33vw, 22vw"
-                    className="object-cover transition-transform duration-700 ease-out [@media(hover:hover)]:group-hover:scale-[1.02]"
-                    style={{ objectPosition: "center center" }}
-                  />
-                </div>
-              </motion.div>
+            {/* lg+: 3+2 two-row contact sheet */}
+            <div className="hidden lg:flex flex-col min-w-0" style={{ gap: "16px" }}>
 
-              {/* Columns 2 & 3: two stacked pairs */}
-              <div className="col-span-2 grid grid-cols-2 gap-4 min-w-0" style={{ height: "clamp(480px, 50vw, 720px)" }}>
-
-                {/* in2 top-left */}
-                <motion.div
-                  className="w-full min-w-0"
-                  style={{ height: "calc(50% - 8px)" }}
-                  custom={2}
-                  variants={galleryItemFade}
-                  initial="hidden"
-                  animate={visible ? "visible" : "hidden"}
-                >
-                  <div
-                    className="group relative w-full h-full overflow-hidden rounded-[20px]"
-                    style={{ backgroundColor: "#EAE4D9", boxShadow: "0 16px 44px rgba(20,35,30,0.08), 0 2px 8px rgba(0,0,0,0.04)" }}
+              {/* Row 1 — three equal portrait cards */}
+              <div className="flex flex-row items-start gap-[16px] w-full min-w-0">
+                {([
+                  { src: "/images/in1.png", alt: "Floor-to-ceiling wardrobe joinery around window alcove — HSR Layout Residence", pos: "center center", custom: 1 },
+                  { src: "/images/in2.png", alt: "Integrated wardrobe joinery with full-length dressing mirror — HSR Layout Residence", pos: "center 20%",   custom: 2 },
+                  { src: "/images/in3.png", alt: "Tailored wardrobe and bedside alcove joinery — HSR Layout Residence",              pos: "center center", custom: 3 },
+                ] as const).map((img) => (
+                  <motion.div
+                    key={img.src}
+                    className="flex-1 min-w-0"
+                    custom={img.custom}
+                    variants={galleryItemFade}
+                    initial="hidden"
+                    animate={visible ? "visible" : "hidden"}
                   >
-                    <Image
-                      src="/images/in2.png"
-                      alt="Integrated wardrobe joinery with full-length dressing mirror at The Linden House"
-                      fill
-                      sizes="(max-width: 1023px) 33vw, 22vw"
-                      className="object-cover transition-transform duration-700 ease-out [@media(hover:hover)]:group-hover:scale-[1.02]"
-                      style={{ objectPosition: "center 20%" }}
-                    />
-                  </div>
-                </motion.div>
+                    <div
+                      className="group relative w-full aspect-[9/16] overflow-hidden rounded-[20px]"
+                      style={{ backgroundColor: "#EAE4D9", boxShadow: "0 8px 28px rgba(20,35,30,0.08), 0 1px 4px rgba(0,0,0,0.04)" }}
+                    >
+                      <Image
+                        src={img.src}
+                        alt={img.alt}
+                        fill
+                        sizes="(max-width: 1439px) 14vw, (max-width: 1919px) 13vw, 11vw"
+                        className="object-cover transition-transform duration-700 ease-out [@media(hover:hover)]:group-hover:scale-[1.025]"
+                        style={{ objectPosition: img.pos }}
+                      />
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
 
-                {/* in3 top-right */}
-                <motion.div
-                  className="w-full min-w-0"
-                  style={{ height: "calc(50% - 8px)" }}
-                  custom={3}
-                  variants={galleryItemFade}
-                  initial="hidden"
-                  animate={visible ? "visible" : "hidden"}
-                >
-                  <div
-                    className="group relative w-full h-full overflow-hidden rounded-[20px]"
-                    style={{ backgroundColor: "#EAE4D9", boxShadow: "0 16px 44px rgba(20,35,30,0.08), 0 2px 8px rgba(0,0,0,0.04)" }}
+              {/* Row 2 — two wider portrait cards, centered */}
+              <div className="flex flex-row justify-center gap-[16px] w-full min-w-0">
+                {([
+                  { src: "/images/in4.png", alt: "Kitchen cabinetry with glass display fronts and black countertop — HSR Layout Residence", pos: "center center", custom: 4 },
+                  { src: "/images/in5.png", alt: "Kitchen sink and workstation overlooking garden window — HSR Layout Residence",            pos: "center center", custom: 5 },
+                ] as const).map((img) => (
+                  <motion.div
+                    key={img.src}
+                    className="min-w-0"
+                    style={{ width: "calc(33.333% + 2%)", flexShrink: 0 }}
+                    custom={img.custom}
+                    variants={galleryItemFade}
+                    initial="hidden"
+                    animate={visible ? "visible" : "hidden"}
                   >
-                    <Image
-                      src="/images/in3.png"
-                      alt="Angular view of tailored wardrobe and cantilevered bedside alcove at The Linden House"
-                      fill
-                      sizes="(max-width: 1023px) 33vw, 22vw"
-                      className="object-cover transition-transform duration-700 ease-out [@media(hover:hover)]:group-hover:scale-[1.02]"
-                      style={{ objectPosition: "center center" }}
-                    />
-                  </div>
-                </motion.div>
-
-                {/* in4 bottom-left */}
-                <motion.div
-                  className="w-full min-w-0"
-                  style={{ height: "calc(50% - 8px)" }}
-                  custom={4}
-                  variants={galleryItemFade}
-                  initial="hidden"
-                  animate={visible ? "visible" : "hidden"}
-                >
-                  <div
-                    className="group relative w-full h-full overflow-hidden rounded-[20px]"
-                    style={{ backgroundColor: "#EAE4D9", boxShadow: "0 16px 44px rgba(20,35,30,0.08), 0 2px 8px rgba(0,0,0,0.04)" }}
-                  >
-                    <Image
-                      src="/images/in4.png"
-                      alt="Contemporary kitchen cabinetry with glass display fronts and black countertop at The Linden House"
-                      fill
-                      sizes="(max-width: 1023px) 33vw, 22vw"
-                      className="object-cover transition-transform duration-700 ease-out [@media(hover:hover)]:group-hover:scale-[1.02]"
-                      style={{ objectPosition: "center center" }}
-                    />
-                  </div>
-                </motion.div>
-
-                {/* in5 bottom-right */}
-                <motion.div
-                  className="w-full min-w-0"
-                  style={{ height: "calc(50% - 8px)" }}
-                  custom={5}
-                  variants={galleryItemFade}
-                  initial="hidden"
-                  animate={visible ? "visible" : "hidden"}
-                >
-                  <div
-                    className="group relative w-full h-full overflow-hidden rounded-[20px]"
-                    style={{ backgroundColor: "#EAE4D9", boxShadow: "0 16px 44px rgba(20,35,30,0.08), 0 2px 8px rgba(0,0,0,0.04)" }}
-                  >
-                    <Image
-                      src="/images/in5.png"
-                      alt="Kitchen sink and workstation overlooking garden window at The Linden House"
-                      fill
-                      sizes="(max-width: 1023px) 33vw, 22vw"
-                      className="object-cover transition-transform duration-700 ease-out [@media(hover:hover)]:group-hover:scale-[1.02]"
-                      style={{ objectPosition: "center center" }}
-                    />
-                  </div>
-                </motion.div>
+                    <div
+                      className="group relative w-full aspect-[9/16] overflow-hidden rounded-[20px]"
+                      style={{ backgroundColor: "#EAE4D9", boxShadow: "0 8px 28px rgba(20,35,30,0.08), 0 1px 4px rgba(0,0,0,0.04)" }}
+                    >
+                      <Image
+                        src={img.src}
+                        alt={img.alt}
+                        fill
+                        sizes="(max-width: 1439px) 17vw, (max-width: 1919px) 15vw, 13vw"
+                        className="object-cover transition-transform duration-700 ease-out [@media(hover:hover)]:group-hover:scale-[1.025]"
+                        style={{ objectPosition: img.pos }}
+                      />
+                    </div>
+                  </motion.div>
+                ))}
               </div>
             </div>
 
-            {/* Quote card — right-aligned below the gallery */}
-            <div className="self-end w-full max-w-[clamp(280px,42%,420px)] min-w-0">
-              <QuoteCard visible={visible} />
+            {/* md–lg tablet: 3+2 structure, narrower */}
+            <div className="hidden md:flex lg:hidden flex-col min-w-0" style={{ gap: "12px" }}>
+              {/* Row 1 */}
+              <div className="flex flex-row items-start gap-[12px] w-full min-w-0">
+                {([
+                  { src: "/images/in1.png", alt: "Wardrobe joinery around window alcove — HSR Layout Residence",     pos: "center center", custom: 1 },
+                  { src: "/images/in2.png", alt: "Integrated dressing mirror joinery — HSR Layout Residence",         pos: "center 20%",   custom: 2 },
+                  { src: "/images/in3.png", alt: "Tailored bedside joinery — HSR Layout Residence",                   pos: "center center", custom: 3 },
+                ] as const).map((img) => (
+                  <motion.div
+                    key={img.src}
+                    className="flex-1 min-w-0"
+                    custom={img.custom}
+                    variants={galleryItemFade}
+                    initial="hidden"
+                    animate={visible ? "visible" : "hidden"}
+                  >
+                    <div
+                      className="group relative w-full aspect-[9/16] overflow-hidden rounded-[18px]"
+                      style={{ backgroundColor: "#EAE4D9", boxShadow: "0 8px 24px rgba(20,35,30,0.08), 0 1px 4px rgba(0,0,0,0.04)" }}
+                    >
+                      <Image
+                        src={img.src}
+                        alt={img.alt}
+                        fill
+                        sizes="22vw"
+                        className="object-cover transition-transform duration-700 ease-out [@media(hover:hover)]:group-hover:scale-[1.025]"
+                        style={{ objectPosition: img.pos }}
+                      />
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
+              {/* Row 2 */}
+              <div className="flex flex-row justify-center gap-[12px] w-full min-w-0">
+                {([
+                  { src: "/images/in4.png", alt: "Kitchen cabinetry and glass display fronts — HSR Layout Residence", pos: "center center", custom: 4 },
+                  { src: "/images/in5.png", alt: "Kitchen sink and garden window — HSR Layout Residence",              pos: "center center", custom: 5 },
+                ] as const).map((img) => (
+                  <motion.div
+                    key={img.src}
+                    className="min-w-0"
+                    style={{ width: "calc(33.333% + 2%)", flexShrink: 0 }}
+                    custom={img.custom}
+                    variants={galleryItemFade}
+                    initial="hidden"
+                    animate={visible ? "visible" : "hidden"}
+                  >
+                    <div
+                      className="group relative w-full aspect-[9/16] overflow-hidden rounded-[18px]"
+                      style={{ backgroundColor: "#EAE4D9", boxShadow: "0 8px 24px rgba(20,35,30,0.08), 0 1px 4px rgba(0,0,0,0.04)" }}
+                    >
+                      <Image
+                        src={img.src}
+                        alt={img.alt}
+                        fill
+                        sizes="27vw"
+                        className="object-cover transition-transform duration-700 ease-out [@media(hover:hover)]:group-hover:scale-[1.025]"
+                        style={{ objectPosition: img.pos }}
+                      />
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
             </div>
+
           </div>
         </div>
 

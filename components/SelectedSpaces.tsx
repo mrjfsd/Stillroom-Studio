@@ -25,41 +25,41 @@ const cardVariant: Variants = {
 const projects = [
   {
     id: "01",
-    image: "/images/linden_house_reading_room.jpg",
+    image: "/images/select3.png",
     imageAlt:
-      "The Linden House — warm residential reading room with oak shelving, linen armchair, brass floor lamp, and soft afternoon light through sheer curtains. Marwan Design, Bengaluru.",
-    title: "The Linden House",
-    location: "Koramangala, Bengaluru",
+      "Sarjapur Residence — warm, light-filled living space with tailored storage joinery, layered lighting, and curtained window wall. The White Atelier, Bengaluru.",
+    title: "Sarjapur Residence",
+    location: "Sarjapur, Bengaluru",
     description:
-      "A calm family home shaped around natural light, quiet materials, and everyday rituals.",
+      "A warm, light-filled living space with tailored storage, layered lighting, and material-led details.",
     /* Controls image height relative to the center dominant card */
     heightClass: "h-[clamp(340px,52vw,580px)] lg:h-[clamp(380px,42vw,560px)]",
     objectPos: "center 30%",
   },
   {
     id: "02",
-    image: "/images/casa_nira_dining.jpg",
+    image: "/images/select2.png",
     imageAlt:
-      "Casa Nira — coastal dining room with live-edge timber table, stone-white chairs, amber glass pendant, and ocean views through floor-to-ceiling windows. Marwan Design, Alibaug.",
-    title: "Casa Nira",
-    location: "Alibaug, Maharashtra",
+      "Panathur Residence — compact kitchen with warm cabinetry, pendant lighting, clean countertop, and integrated refrigerator. The White Atelier, Bengaluru.",
+    title: "Panathur Residence",
+    location: "Panathur, Bengaluru",
     description:
-      "A coastal retreat where tactile finishes and open planning bring the landscape indoors.",
+      "A compact kitchen designed for daily ease through clean planning, warm finishes, and practical storage.",
     /* Dominant/tallest card */
     heightClass: "h-[clamp(380px,60vw,680px)] lg:h-[clamp(460px,52vw,700px)]",
-    objectPos: "center 20%",
+    objectPos: "center 25%",
   },
   {
     id: "03",
-    image: "/images/verandah_hospitality.jpg",
+    image: "/images/select1.png",
     imageAlt:
-      "The Verandah — intimate hospitality reception with terracotta plaster walls, brass sconces, rattan seating, and herringbone tile floor. Marwan Design, Mumbai.",
-    title: "The Verandah",
-    location: "Bandra, Mumbai",
+      "Budigere Cross Residence — custom home-work corner with patterned cabinetry, built-in desk, natural wood flooring, and doorway view. The White Atelier, Bengaluru.",
+    title: "Budigere Cross Residence",
+    location: "Budigere Cross, Bengaluru",
     description:
-      "An intimate hospitality setting built through atmosphere, rhythm, and detail.",
+      "A custom home-work corner where soft tones, crafted cabinetry, and natural wood create a calm everyday setting.",
     heightClass: "h-[clamp(340px,52vw,580px)] lg:h-[clamp(380px,42vw,560px)]",
-    objectPos: "center 35%",
+    objectPos: "center 40%",
   },
 ] as const;
 
@@ -121,7 +121,7 @@ function ProjectCard({
       aria-label={`Project: ${project.title}`}
     >
       {/* Image */}
-      <a href="#" aria-label={`View ${project.title} project`} className="block">
+      <a href="/projects" aria-label={`View ${project.title} project`} className="block">
         <div
           className={`relative overflow-hidden rounded-[24px] lg:rounded-[26px] ${project.heightClass}`}
         >
@@ -346,9 +346,9 @@ export default function SelectedSpaces() {
             variants={fadeUp}
           >
             <motion.a
-              href="#"
+              href="/projects"
               id="view-all-projects-btn"
-              aria-label="View all Marwan Design projects"
+              aria-label="View all The White Atelier projects"
               className="inline-block rounded-full whitespace-nowrap no-underline font-medium tracking-[0.05em] cursor-pointer border"
               style={{
                 fontFamily: "var(--font-dm-sans, system-ui, sans-serif)",
@@ -374,7 +374,7 @@ export default function SelectedSpaces() {
             </motion.a>
 
             <motion.a
-              href="#"
+              href="/projects"
               aria-label="View all projects"
               className="flex items-center justify-center shrink-0 rounded-full border text-ivory cursor-pointer no-underline"
               style={{

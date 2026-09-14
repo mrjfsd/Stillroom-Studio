@@ -84,7 +84,7 @@ export default function StudioIntro() {
               {/* Photography */}
               <Image
                 src="/images/marwan_studio_intro_dining.jpg"
-                alt="Completed Marwan Design dining room featuring travertine table, curved cream linen chairs, warm oak joinery and a sculptural dried-branch chandelier with brass hardware."
+                alt="Completed The White Atelier dining room featuring travertine table, curved cream linen chairs, warm oak joinery and a sculptural dried-branch chandelier with brass hardware."
                 fill
                 sizes="(max-width: 1023px) 100vw, 42vw"
                 className="object-cover"
@@ -121,7 +121,7 @@ export default function StudioIntro() {
                     className="block h-[1px] bg-brass shrink-0"
                     style={{ width: "22px" }}
                   />
-                  Marwan Design Principles
+                  The White Atelier Principles
                 </p>
 
                 {/* Title */}
@@ -282,9 +282,9 @@ export default function StudioIntro() {
             >
               {/* Primary pill button */}
               <motion.a
-                href="#"
+                href="/studio"
                 id="meet-studio-btn"
-                aria-label="Meet the Marwan Design studio"
+                aria-label="Meet The White Atelier studio"
                 className="inline-block text-charcoal bg-ivory rounded-full whitespace-nowrap no-underline font-medium tracking-[0.05em] cursor-pointer border border-[rgba(20,35,30,0.14)]"
                 style={{
                   fontFamily: "var(--font-dm-sans, system-ui, sans-serif)",
@@ -310,8 +310,8 @@ export default function StudioIntro() {
 
               {/* Circle arrow button */}
               <motion.a
-                href="#"
-                aria-label="Learn more about Marwan Design"
+                href="/studio"
+                aria-label="Learn more about The White Atelier"
                 className="flex items-center justify-center shrink-0 rounded-full border border-[rgba(20,35,30,0.18)] bg-transparent text-charcoal cursor-pointer no-underline"
                 style={{ width: "50px", height: "50px" }}
                 whileHover={

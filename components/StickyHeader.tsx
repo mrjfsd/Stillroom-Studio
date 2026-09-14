@@ -6,8 +6,8 @@ import { Menu, X } from "lucide-react";
 import MobileMenu from "./MobileMenu";
 import { NAV_LINKS } from "@/types";
 
-/** Compact M monogram for sticky navigation */
-function MMonogram() {
+/** Compact monogram for sticky navigation — architectural W letterform */
+function StudioMonogram() {
   return (
     <svg
       width="28"
@@ -28,7 +28,7 @@ function MMonogram() {
         strokeOpacity="0.7"
       />
       <path
-        d="M7 27V7L17 19L27 7V27"
+        d="M7 8L12 26L17 14L22 26L27 8"
         stroke="#F7F3EC"
         strokeWidth="1.5"
         strokeLinecap="round"
@@ -37,9 +37,9 @@ function MMonogram() {
       />
       <line
         x1="7"
-        y1="18"
+        y1="17"
         x2="27"
-        y2="18"
+        y2="17"
         stroke="#B78C4A"
         strokeWidth="1.1"
         strokeLinecap="round"
@@ -237,10 +237,10 @@ export default function StickyHeader() {
             href="#home"
             onClick={(e) => handleNavClick(e, "#home")}
             className="flex items-center gap-[9px] no-underline shrink-0"
-            aria-label="Marwan Design — return to top"
+            aria-label="The White Atelier — return to top"
             tabIndex={isVisible ? 0 : -1}
           >
-            <MMonogram />
+            <StudioMonogram />
             <span
               className="text-ivory whitespace-nowrap leading-none font-display font-medium tracking-[0.045em]"
               style={{
@@ -248,7 +248,7 @@ export default function StickyHeader() {
                 fontSize: "clamp(14.5px, 1.2vw, 17px)",
               }}
             >
-              Marwan Design
+              The White Atelier
             </span>
           </a>
 

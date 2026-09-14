@@ -3,6 +3,7 @@
 import { useRef } from "react";
 import { motion, useInView, useReducedMotion, type Variants } from "framer-motion";
 import { ArrowUpRight, Mail } from "lucide-react";
+import { WHATSAPP_CHAT_URL } from "@/config/whatsapp";
 
 /* ── Animation variants ───────────────────────────────────── */
 const fadeUp: Variants = {
@@ -117,15 +118,27 @@ const materialSwatches: Array<{
 const footerNav = [
   {
     heading: "Studio",
-    links: ["About", "Approach", "Journal"],
+    links: [
+      { label: "About",    href: "/studio" },
+      { label: "Approach", href: "/studio" },
+      { label: "Journal",  href: "/journal" },
+    ],
   },
   {
     heading: "Services",
-    links: ["Residential", "Hospitality", "Commercial"],
+    links: [
+      { label: "Residential",  href: "/services" },
+      { label: "Hospitality",  href: "/services" },
+      { label: "Commercial",   href: "/services" },
+    ],
   },
   {
     heading: "Connect",
-    links: ["Start a Project", "Instagram", "Contact"],
+    links: [
+      { label: "Start a Project", href: "/start-a-project" },
+      { label: "Instagram",       href: "#" },
+      { label: "Contact",         href: "/start-a-project" },
+    ],
   },
 ];
 
@@ -154,8 +167,8 @@ function LinkedInIcon() {
   );
 }
 
-/* ── M Monogram (same as Header) ─────────────────────────── */
-function MMonogram({ size = 34 }: { size?: number }) {
+/* ── Studio Monogram (same as Header) ─────────────────────── */
+function StudioMonogram({ size = 34 }: { size?: number }) {
   return (
     <svg
       width={size}
@@ -167,14 +180,14 @@ function MMonogram({ size = 34 }: { size?: number }) {
     >
       <rect x="0.5" y="0.5" width="33" height="33" rx="3.5" stroke="#B78C4A" strokeOpacity="0.7" />
       <path
-        d="M7 27V7L17 19L27 7V27"
+        d="M7 8L12 26L17 14L22 26L27 8"
         stroke="#F7F3EC"
         strokeWidth="1.5"
         strokeLinecap="round"
         strokeLinejoin="round"
         fill="none"
       />
-      <line x1="7" y1="18" x2="27" y2="18" stroke="#B78C4A" strokeWidth="1.1" strokeLinecap="round" />
+      <line x1="7" y1="17" x2="27" y2="17" stroke="#B78C4A" strokeWidth="1.1" strokeLinecap="round" />
     </svg>
   );
 }
@@ -280,9 +293,11 @@ function ConsultationCTA({ shouldReduce }: { shouldReduce: boolean | null }) {
           variants={fadeUp}
         >
           <motion.a
-            href="#"
+            href={WHATSAPP_CHAT_URL}
+            target="_blank"
+            rel="noopener noreferrer"
             id="start-conversation-btn"
-            aria-label="Start a conversation about your project"
+            aria-label="Start a conversation about your project on WhatsApp"
             className="inline-block rounded-full whitespace-nowrap no-underline font-medium tracking-[0.05em] cursor-pointer"
             style={{
               fontFamily: "var(--font-dm-sans, system-ui, sans-serif)",
@@ -307,8 +322,10 @@ function ConsultationCTA({ shouldReduce }: { shouldReduce: boolean | null }) {
           </motion.a>
 
           <motion.a
-            href="#"
-            aria-label="Start a conversation about your project"
+            href={WHATSAPP_CHAT_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Start a conversation about your project on WhatsApp"
             className="flex items-center justify-center shrink-0 rounded-full border text-charcoal cursor-pointer no-underline"
             style={{
               width: "52px",
@@ -331,7 +348,7 @@ function ConsultationCTA({ shouldReduce }: { shouldReduce: boolean | null }) {
             <motion.span
               whileHover={shouldReduce ? {} : { rotate: -18, scale: 1.12 }}
               transition={{ duration: 0.25 }}
-              className="flex items-center justify-center"
+              className="flex items-center justify-center pointer-events-none"
             >
               <ArrowUpRight size={18} strokeWidth={1.4} />
             </motion.span>
@@ -388,7 +405,7 @@ function SiteFooter({ shouldReduce }: { shouldReduce: boolean | null }) {
           >
             {/* Logo */}
             <div className="flex items-center gap-3 mb-5">
-              <MMonogram size={34} />
+              <StudioMonogram size={34} />
               <span
                 className="text-ivory tracking-[-0.01em]"
                 style={{
@@ -397,7 +414,7 @@ function SiteFooter({ shouldReduce }: { shouldReduce: boolean | null }) {
                   fontWeight: 600,
                 }}
               >
-                Marwan Design
+                The White Atelier
               </span>
             </div>
 
@@ -434,7 +451,7 @@ function SiteFooter({ shouldReduce }: { shouldReduce: boolean | null }) {
                 },
                 { label: "Pinterest", icon: <PinterestIcon /> },
                 { label: "LinkedIn", icon: <LinkedInIcon /> },
-                { label: "Email Marwan Design", icon: <Mail size={16} strokeWidth={1.4} /> },
+                { label: "Email The White Atelier", icon: <Mail size={16} strokeWidth={1.4} /> },
               ].map(({ label, icon }) => (
                 <a
                   key={label}
@@ -483,9 +500,9 @@ function SiteFooter({ shouldReduce }: { shouldReduce: boolean | null }) {
                 </h3>
                 <ul className="flex flex-col gap-[11px]" role="list">
                   {col.links.map((link) => (
-                    <li key={link} role="listitem">
+                    <li key={link.label} role="listitem">
                       <a
-                        href="#"
+                        href={link.href}
                         className="no-underline transition-colors duration-250"
                         style={{
                           fontFamily: "var(--font-dm-sans, system-ui, sans-serif)",
@@ -499,7 +516,7 @@ function SiteFooter({ shouldReduce }: { shouldReduce: boolean | null }) {
                           e.currentTarget.style.color = "rgba(235,229,220,0.52)";
                         }}
                       >
-                        {link}
+                        {link.label}
                       </a>
                     </li>
                   ))}
@@ -531,7 +548,7 @@ function SiteFooter({ shouldReduce }: { shouldReduce: boolean | null }) {
               color: "rgba(235,229,220,0.32)",
             }}
           >
-            &copy; 2026 Marwan Design. All rights reserved.
+            &copy; 2026 The White Atelier. All rights reserved.
           </p>
 
           <div className="flex items-center gap-5">

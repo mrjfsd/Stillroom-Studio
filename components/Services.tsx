@@ -71,7 +71,7 @@ const services: ServiceCard[] = [
     number: "03",
     imageSrc: "/images/marwan_hospitality_interior.jpg",
     imageAlt:
-      "Marwan Design hospitality project: an intimate boutique lounge with deep green velvet curved banquette, brass wall sconces, walnut panelled ceiling, and warm amber lighting.",
+      "The White Atelier hospitality project: an intimate boutique lounge with deep green velvet curved banquette, brass wall sconces, walnut panelled ceiling, and warm amber lighting.",
     titleLines: ["Hospitality &", "Commercial"],
     description:
       "Atmospheric spaces that turn a brand story into a memorable experience.",
@@ -155,7 +155,7 @@ function PaletteCard({
       {/* Footer link */}
       <div className="flex items-center justify-between mt-8 pt-6 border-t border-[rgba(20,35,30,0.09)]">
         <a
-          href="#"
+          href="/services"
           className="flex items-center gap-[7px] no-underline group"
           aria-label={`${card.linkLabel} — ${card.titleLines[0]} ${card.titleLines[1]}`}
           style={{
@@ -277,7 +277,7 @@ function PhotoCard({
         {/* Footer link */}
         <div className="pt-5 border-t border-[rgba(247,243,236,0.14)] flex items-center justify-between">
           <a
-            href="#"
+            href="/services"
             className="flex items-center gap-[7px] no-underline group/link"
             aria-label={`${card.linkLabel} — ${card.titleLines[0]} ${card.titleLines[1]}`}
             style={{
@@ -380,7 +380,7 @@ export default function Services() {
               }}
               variants={fadeUp}
             >
-              From first concept to final styling, Marwan Design brings clarity,
+              From first concept to final styling, The White Atelier brings clarity,
               character, and craft to every layer of an interior.
             </motion.p>
           </div>

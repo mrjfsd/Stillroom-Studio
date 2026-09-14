@@ -19,9 +19,16 @@ const dmSans = DM_Sans({
 });
 
 export const metadata: Metadata = {
-  title: "Marwan Design — Luxury Interior Design Studio",
+  title: "The White Atelier — Luxury Interior Design Studio",
   description:
-    "Marwan Design creates thoughtful interiors that balance timeless materials, personal stories, and everyday ease. Luxury residential and commercial interior design.",
+    "The White Atelier creates thoughtful interiors that balance timeless materials, personal stories, and everyday ease. Luxury residential and commercial interior design.",
+  openGraph: {
+    title: "The White Atelier — Luxury Interior Design Studio",
+    description:
+      "The White Atelier creates thoughtful interiors that balance timeless materials, personal stories, and everyday ease. Luxury residential and commercial interior design.",
+    siteName: "The White Atelier",
+    type: "website",
+  },
 };
 
 export default function RootLayout({
